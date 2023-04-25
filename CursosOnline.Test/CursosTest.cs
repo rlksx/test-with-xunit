@@ -1,44 +1,45 @@
+using ExpectedObjects;
 using Xunit;
-namespace CursosOnline.Test;
 
-public class CursosTest
+namespace CursosOnline.teste;
+
+public class CursosTetse
 {
    [Fact]
-   public void criar_curso_valido()
+   public void criar_curso()
    {
       // Arrange
-      string nome = "Teste1";
-      double cargaHoraria = 80;
-      string publicoAlvo = "Universitarios";
-      double valor = 120;
+      var curso = new
+      {
+         nome = "Nutrição",
+         cargaHoraria = (double)60,
+         publico = "Profisional",
+         valor = (double)120
+      };
 
-      // Act
-      var curso = new Curso(nome, cargaHoraria, publicoAlvo, valor);
+      // Act 
+      Curso Curso = new Curso(curso.nome, curso.cargaHoraria, curso.publico, curso.valor);
 
-      // Assert
-
-   }
-
-   [Fact]
-   public void criar_aula_valida()
-   {
-
+      //Assert 
+      curso.ToExpectedObject().ShouldMatch(Curso);
    }
 }
 
 public class Curso
 {
-   public string nome { get; private set; }
-   public double cargaHoraria { get; private set; }
-   public string publicoAlvo { get; private set; }
-   public double valor { get; private set; }
+   // Campos
+   public string Nome { get; private set; }
+   public double CargaHoraria { get; private set; }
+   public string Publico { get; private set; }
+   public double Valor { get; private set; }
+   public double Desconto { get; set; }
 
-
-   public Curso(string nome, double cargaHoraria, string publicoAlvo, double valor)
+   public Curso(string nome, double cargaHoraria, string publico, double valor, double desconto = 0)
    {
-      this.nome = nome;
-      this.cargaHoraria = cargaHoraria;
-      this.publicoAlvo = publicoAlvo;
-      this.valor = valor;
+      this.Nome = nome;
+      this.CargaHoraria = cargaHoraria;
+      this.Desconto = desconto;
+      this.Publico = publico;
+      this.Valor = valor;
    }
 }
