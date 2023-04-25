@@ -16,12 +16,31 @@ public class CursosTetse
          publico = "Profisional",
          valor = (double)120
       };
-
+      
       // Act 
       Curso Curso = new Curso(curso.nome, curso.cargaHoraria, curso.publico, curso.valor);
 
       //Assert 
       curso.ToExpectedObject().ShouldMatch(Curso);
+   }
+
+   [Theory]
+   [InlineData("")]
+   [InlineData(null)]
+   public void validar_campo_nome(string nome)
+   {
+      // Arrange
+      var curso = new
+      {
+         nome = "Nutrição Esportiva",
+         cargaHoraria = (double)22,
+         publico = "Profisional",
+         valor = (double)39.99
+      };
+
+      // Act
+      Assert.Throws<ArgumentException>(
+         () => new Curso(nome, curso.cargaHoraria, curso.publico, curso.valor));
    }
 }
 
