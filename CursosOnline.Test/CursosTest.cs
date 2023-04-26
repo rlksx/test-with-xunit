@@ -5,6 +5,9 @@ namespace CursosOnline.teste;
 
 public class CursosTetse
 {
+
+   // private readonly object _curso;
+
    [Fact]
    public void criar_curso()
    {
@@ -42,6 +45,25 @@ public class CursosTetse
       Assert.Throws<ArgumentException>(
          () => new Curso(nome, curso.cargaHoraria, curso.publico, curso.valor));
    }
+
+   [Theory]
+   [InlineData(0)]
+   [InlineData(-1)]
+   public void validar_campo_carga_horaria(double cargaHoraria)
+   {
+      // Arrange
+      var curso = new
+      {
+         nome = "Nutrição Esportiva",
+         cargaHoraria = (double)22,
+         publico = "Profisional",
+         valor = (double)39.99
+      };
+
+      // Act
+      Assert.Throws<ArgumentException>(
+         () => new Curso(curso.nome, cargaHoraria, curso.publico, curso.valor));
+   }
 }
 
 public class Curso
@@ -58,7 +80,8 @@ public class Curso
 
       // if (nome == string.Empty) throw new ArgumentException();
       // if (nome == null) throw new ArgumentException();
-      if (string.IsNullOrEmpty(nome)) throw new ArgumentException();
+      if (string.IsNullOrEmpty(nome)) throw new ArgumentException("Nome inválido");
+      if(cargaHoraria <= 0) throw new ArgumentException("Carga horária inválida");
 
       this.Nome = nome;
       this.CargaHoraria = cargaHoraria;
