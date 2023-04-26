@@ -30,7 +30,7 @@ public class CursosTetse
    [Theory]
    [InlineData("")]
    [InlineData(null)]
-   public void validar_campo_nome(string nome)
+   public void validar_campo_nome(string _nome)
    {
       // Arrange
       var curso = new
@@ -43,13 +43,13 @@ public class CursosTetse
 
       // Act
       Assert.Throws<ArgumentException>(
-         () => new Curso(nome, curso.cargaHoraria, curso.publico, curso.valor));
+         () => new Curso(_nome, curso.cargaHoraria, curso.publico, curso.valor));
    }
 
    [Theory]
    [InlineData(0)]
    [InlineData(-1)]
-   public void validar_campo_carga_horaria(double cargaHoraria)
+   public void validar_campo_carga_horaria(double _cargaHoraria)
    {
       // Arrange
       var curso = new
@@ -60,9 +60,10 @@ public class CursosTetse
          valor = (double)39.99
       };
 
-      // Act
+      // Act & Assert
       Assert.Throws<ArgumentException>(
-         () => new Curso(curso.nome, cargaHoraria, curso.publico, curso.valor));
+         () => new Curso(curso.nome, _cargaHoraria, curso.publico, curso.valor)
+      ).Message.Equals("Carga horária inválida");
    }
 }
 
