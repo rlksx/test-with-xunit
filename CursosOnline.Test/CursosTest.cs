@@ -78,16 +78,15 @@ public class Curso
 
    public Curso(string nome, double cargaHoraria, string publico, double valor, double desconto = 0)
    {
-
       // if (nome == string.Empty) throw new ArgumentException();
       // if (nome == null) throw new ArgumentException();
       if (string.IsNullOrEmpty(nome)) throw new ArgumentException("Nome inválido");
       if(cargaHoraria <= 0) throw new ArgumentException("Carga horária inválida");
 
-      this.Nome = nome;
-      this.CargaHoraria = cargaHoraria;
-      this.Desconto = desconto;
-      this.Publico = publico;
-      this.Valor = valor;
+      Nome = nome;
+      CargaHoraria = cargaHoraria;
+      Desconto = desconto;
+      Publico = publico;
+      Valor = valor;
    }
 }

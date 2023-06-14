@@ -18,27 +18,20 @@ namespace CursosOnline.Test._Builders
         private double _valorDesconto = 100;
         private double _nota = 8;
 
-        /*
-        Meio que seguindo uma lógica de Singleton, essa função vai reservar
+        /* Meio que seguindo uma lógica de Singleton, essa função vai reservar
         um espaço na memória para esse formato.
 
         Com isso, temos que uma nova instância vai retornar exatamente a
-        estrutura que precisamos que seja retornada.
-        */
-        public static CursoBuilder Novo()
-        {
-            return new CursoBuilder();
-        }
+        estrutura que precisamos que seja retornada. */
+        public static CursoBuilder Novo() 
+        => new CursoBuilder();
 
         public Curso Criar()
-        {
-            return new Curso(_nome, _descricao, _cargaHoraria, _publico, _valor, _nota);
-        }
+            => new Curso(_nome, _descricao, _cargaHoraria, _publico, _valor, _nota);
 
         public CursoBuilder ComNome(string nome)
         {
             _nome = nome;
-
             return this;
         }
 
@@ -52,35 +45,30 @@ namespace CursosOnline.Test._Builders
         public CursoBuilder ComCargaHoraria(double cargaHoraria)
         {
             _cargaHoraria = cargaHoraria;
-
             return this;
         }
 
         public CursoBuilder ComPublico(string publico)
         {
             _publico = publico;
-
             return this;
         }
 
         public CursoBuilder ComValor(double valor)
         {
             _valor = valor;
-
             return this;
         }
 
         public CursoBuilder ComValorDesconto(double valorDesconto)
         {
             _valorDesconto = valorDesconto;
-
             return this;
         }
 
         public CursoBuilder ComNota(double nota)
         {
             _nota = nota;
-
             return this;
         }
     }

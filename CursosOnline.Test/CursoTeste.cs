@@ -153,8 +153,7 @@ public class CursoTeste
        */
       Assert
           .Throws<ArgumentException>(
-              () => CursoBuilder.Novo().ComNota(nota).Criar()
-          )
+              () => CursoBuilder.Novo().ComNota(nota).Criar())
           .Message.Equals("Nota Inválida!");
    }
 }
